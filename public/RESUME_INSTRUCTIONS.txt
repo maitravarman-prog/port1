@@ -1,0 +1,7 @@
+Resume Placement Instructions:
+--------------------------------
+To enable the "Download Resume" button on the portfolio website:
+Place your actual resume PDF named "resume.pdf" inside this directory:
+c:\maitra port\public\resume.pdf
+
+The website frontend is pre-configured to automatically detect and download this file once added.
