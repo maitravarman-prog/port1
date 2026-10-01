@@ -3,7 +3,13 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+let cachedConn = null;
+
 export async function connectDB() {
+  if (cachedConn && mongoose.connection.readyState === 1) {
+    return true;
+  }
+
   const uri = process.env.MONGODB_URI;
 
   if (!uri) {
@@ -23,6 +29,7 @@ export async function connectDB() {
     const conn = await mongoose.connect(uri, {
       serverSelectionTimeoutMS: 5000,
     });
+    cachedConn = conn;
     console.log(`✅ [MongoDB Connected]: Successfully connected to cluster: ${conn.connection.host}`);
     return true;
   } catch (error) {
